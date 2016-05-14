@@ -4,8 +4,8 @@ package com.liushan.model;
  * Created by liushan03 on 16/3/18.
  */
 public class User {
-    private String username;
-    private String password;
+    public String username;
+    public String password;
 
     public User(String username, String password) {
         this.username = username;

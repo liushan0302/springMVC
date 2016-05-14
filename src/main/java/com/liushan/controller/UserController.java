@@ -1,13 +1,16 @@
 package com.liushan.controller;
 
-import com.liushan.model.User;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.liushan.model.User;
 
 /**
  * Created by liushan03 on 16/3/18.
@@ -24,9 +27,25 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users",method = RequestMethod.GET)
-    public String list(Model model){
-        //model.addAllAttributes("users",users);
-        return "list";
+    public Map<String, User> list(){
+        return users;
     }
+
+    @RequestMapping(method=RequestMethod.GET, value="/users/{id}")
+    public ModelAndView get(@PathVariable String id) throws Exception {
+        System.out.print(id);
+
+        User e = new User("liushan","aaabbb");
+
+        ModelMap modelMap = new ModelMap();
+        modelMap.put("aaa",e);
+
+        ModelAndView model = new ModelAndView("list",modelMap);
+//        model.addAllObjects("aaa",e);
+//        model.addObject("aaa",e);
+
+        return model;
+    }
+
 
 }
